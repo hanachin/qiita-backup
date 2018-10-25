@@ -9,7 +9,7 @@ set -ex
 
 page=1
 
-mkdir -p ./backups/json
+mkdir -p ./backups/json/authenticated_user
 
 while :
 do
@@ -18,6 +18,6 @@ do
         break
     fi
 
-    echo $response > backups/json/item.authenticated_user_items.$page.json
+    echo $response > backups/json/authenticated_user/items.$page.json
     page=$((page + 1))
 done
