@@ -2,4 +2,8 @@
 
 all:
 	bundle install
-	echo WIP
+	./backup-item.authenticated_user_items.sh
+
+.PHONY: clean
+clean:
+	rm -rf backups
