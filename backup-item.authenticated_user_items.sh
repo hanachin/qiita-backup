@@ -7,17 +7,10 @@ fi
 
 set -ex
 
-page=1
+mkdir -p ./backups/raw_json/authenticated_user
 
-mkdir -p ./backups/json/authenticated_user
-
-while :
+# I have 56 Qiita posts
+for page in `seq 1 56`
 do
-    response=$(wget -qO - --header "Authorization: Bearer $TOKEN" "https://qiita.com/api/v2/authenticated_user/items?per_page=100&page=$page")
-    if [ "0" -eq $(echo $response | jq length) ]; then
-        break
-    fi
-
-    echo $response > backups/json/authenticated_user/items.$page.json
-    page=$((page + 1))
+    wget -qO - --header "Authorization: Bearer $TOKEN" "https://qiita.com/api/v2/authenticated_user/items?per_page=1&page=$page" > backups/raw_json/authenticated_user/items.$page.json
 done
