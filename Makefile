@@ -1,7 +1,11 @@
-.PHONY: all
+.PHONY: all gems
 
-all:
+gems:
 	bundle install
+
+all: gems backups/raw_json/authenticated_user
+
+backups/raw_json/authenticated_user:
 	./backup-item.authenticated_user_items.sh
 
 .PHONY: clean
